@@ -3,10 +3,7 @@
 class Personnage
 {
     private int $_force = 50; // La force du personnage, par défaut 50
-    private string $_localisation = ''; // Sa localisation
     private int $_experience = 0; // Son expérience
-    private int $_degats = 0; // Ses dégâts
-    static private $_nbObjects=0; 
 
     // function static
     static public function nbObjects(){
@@ -26,16 +23,24 @@ class Personnage
         // ou « FORCE_MOYENNE », ou « FORCE_GRANDE ».
         self::$_nbObjects++; 
 
-        if (in_array($force, [self::FORCE_PETITE, self::FORCE_MOYENNE, self::FORCE_GRANDE])) {
-            $this->_force = $force;
-        }
-        else{ // sinon on donne une petite force par défaut !
-            $this->_force = self::FORCE_PETITE;
-
-        // on compte le nombre d'instances de la classe
+        hydrate($donnees);
         }
 
+
+    public function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
+            // On fabrique le nom du setter correspondant à l'attribut :
+            $setter = 'set'.ucfirst($key);
+            // Si le setter correspondant existe :
+            if (method_exists($this, $setter)) {
+            // On appelle le setter = $setter contient son nom !!!
+            $this->$setter($value);
+            }
+        }
     }
+
+    // setteurs
+
 }
 
 ?>
