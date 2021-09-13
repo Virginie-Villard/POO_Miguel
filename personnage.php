@@ -1,44 +1,60 @@
 <?php
 
-class Personnage {
-    private $_name = "";
-    private $_strength = 50;  // La force du personnage, par défaut 50
-    private $_experience = 0;
-    private $_damage = 0;
-    private $_location = "";
+class Personnage
+{
+ private int $_force = 50; // La force du personnage, par défaut 50
+ private string $_localisation = ''; // Sa localisation
+ private int $_experience = 0; // Son expérience
+ private int $_degats = 0; // Ses dégâts
+ static private $_nbObjects=0; 
 
-    public function __construct(string $name, int $strength, int $experience, int $damage, string $location) {
-        $this->name = $name;
-        $this->strength = $strength;
-        $this->experience = $experience;
-        $this->damage = $damage;
-        $this->location = $location;
+// // Une méthode qui déplacera le personnage (modifiera sa localisation).
+//  public function deplacer(){
+//  }
+
+// // Une méthode qui frappera un personnage (suivant la force qu'il a).
+//  public function frapper(){
+//  }
+
+//  // Une méthode qui parlera avec un personnage 
+// public function parler(){
+// }
+
+// // Une méthode augmentant l'attribut $experience du personnage.
+//  public function gagnerExperience() {
+//  }
+
+// //  est une sorte d’__autoload() généralisé : il permet d’exécuter une méthode
+// // à chaque instanciation d’une classe : on parle de pile d’autolaod().
+
+ // function static
+ static public function nbObjects(){
+    // on accede à la variable static par self et ::
+    // self represente la classe, on pourrait metre Personnage
+    return self::$_nbObjects;
+ }
+
+ // Déclarations des constantes en rapport avec la force.
+ const FORCE_PETITE = 20;
+ const FORCE_MOYENNE = 50;
+ const FORCE_GRANDE = 80;
+
+ public function __construct($force, $degats) {
+    // le setter vérifie l’intégrité des données fournies
+    // On vérifie que $force vaut « FORCE_PETITE »,
+    // ou « FORCE_MOYENNE », ou « FORCE_GRANDE ».
+    self::$_nbObjects++; 
+
+        if (in_array($force, [self::FORCE_PETITE, self::FORCE_MOYENNE, self::FORCE_GRANDE])) {
+            $this->_force = $force;
+    }
+        else{ // sinon on donne une petite force par défaut !
+            $this->_force = self::FORCE_PETITE;
+        
+        // on compte le nombre d'instances de la classe
     }
 
-    // Une méthode qui déplacera le personnage (modifiera sa localisation).
-    public function move()
-
-    // Une méthode qui fera parler le personnage.
-    public function speak($speech)
-
-    // Une méthode qui affichera l'attribut $experience du personnage.
-    public function displayExperience()
-
-    // Une méthode augmentant l'attribut $experience du personnage.
-    public function gainExperience()
-
-    // Une méthode qui frappera un personnage (suivant la force qu'il a).
-    public function hit()
-
-    // Une méthode qui modifiera l'attribut $damage du personnage.
-    public function damage()
-
-    // Une méthode qui donnera une valeur l'attribut $damage du personnage.
-    public function setDamage()
-
-    // Une méthode qui modifiera l'attribut $strength du personnage.
-    public function strenght()
-
-    // Une méthode qui attribuera une valeur à l'attribut $strength du personnage.
-    public function setStrenth()
+    }
 }
+
+?>
