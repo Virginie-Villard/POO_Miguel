@@ -10,4 +10,6 @@ function requireClass($classe){
 
 include 'usages.php'; // On inclut les usages.
 
+include 'personnageManager.php';
+
 ?>
