@@ -13,9 +13,16 @@ function personnageDB() {
             die('Erreur : '.$e->getMessage());
     }
     // On récupère tout le contenu de la table article de notre boutique
-    $reponse = $bdd->query('SELECT * FROM personnage');
-    // On affiche chaque entrée une à une
-    while ($donnees = $reponse->fetch())
+    $personnage = $bdd->query('SELECT * FROM personnage');
+
+    $pdoStat = $pdo->query($reqSQL);
+    // Chaque entrée sera récupérée et placée dans un array.
+    while ($personnage = $pdoStat->fetch(PDO::FETCH_ASSOC)){
+        echo $personnage['nom'], ' a ',
+        $personnage['degats'], ' de dégâts -- id : ',
+        $personnage['id'], '<br>';
+    }
+
 }
 
 ?>
