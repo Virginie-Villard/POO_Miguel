@@ -30,6 +30,7 @@ class Personnage
     public function hydrate(array $donnees) {
         foreach ($donnees as $key => $value) {
             // On fabrique le nom du setter correspondant à l'attribut :
+            // ucfirst met la première lettre du mot en majuscule, ça crée donc un nom setKey en camelCase !
             $setter = 'set'.ucfirst($key);
             // Si le setter correspondant existe :
             if (method_exists($this, $setter)) {
