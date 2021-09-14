@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 14 sep. 2021 à 07:30
+-- Généré le : mar. 14 sep. 2021 à 07:42
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `personnage` (
   `nom` varchar(255) NOT NULL,
   `experience` int(255) NOT NULL,
   `degats` int(255) NOT NULL,
+  `forcePersonnage` int(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
@@ -40,11 +41,11 @@ CREATE TABLE IF NOT EXISTS `personnage` (
 -- Déchargement des données de la table `personnage`
 --
 
-INSERT INTO `personnage` (`id`, `nom`, `experience`, `degats`) VALUES
-(1, 'personnage1', 0, 20),
-(2, 'personnage2', 0, 21),
-(3, 'personnage3', 0, 19),
-(4, 'personnage4', 0, 20);
+INSERT INTO `personnage` (`id`, `nom`, `experience`, `degats`, `forcePersonnage`) VALUES
+(1, 'personnage1', 0, 20, 50),
+(2, 'personnage2', 0, 21, 48),
+(3, 'personnage3', 0, 19, 51),
+(4, 'personnage4', 0, 20, 49);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
